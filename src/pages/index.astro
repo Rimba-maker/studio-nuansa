@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero';
+import Philosophy from '../components/Philosophy.astro';
+import FeaturedProjects from '../components/FeaturedProjects';
+import Services from '../components/Services';
+import Process from '../components/Process';
+import StyleCategories from '../components/StyleCategories';
+import TheTeam from '../components/TheTeam';
+import Journal from '../components/Journal';
+import Testimonial from '../components/Testimonial';
+import Pricing from '../components/Pricing.astro';
+import ContactCTA from '../components/ContactCTA';
+---
+
+<Layout>
+	<Hero client:load />
+	<Philosophy />
+	<FeaturedProjects client:visible />
+	<Services client:visible />
+	<Process client:visible />
+	<StyleCategories client:visible />
+	<TheTeam client:visible />
+	<Journal client:visible />
+	<Testimonial client:visible />
+	<Pricing />
+	<ContactCTA client:idle />
+</Layout>
