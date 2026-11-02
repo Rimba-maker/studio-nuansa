@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-02T00:00:00Z",
+  "title": "Design System: Studio Nuansa",
+  "extensions": {
+    "colorMeta": {
+      "botol": {
+        "role": "primary",
+        "displayName": "Bottle Green",
+        "canonical": "#17362c",
+        "tonalRamp": [
+          "#091612",
+          "#0e201a",
+          "#122b23",
+          "#17362c",
+          "#455e56",
+          "#748680",
+          "#a2afab",
+          "#d1d7d5"
+        ]
+      },
+      "botol-deep": {
+        "role": "primary",
+        "displayName": "Deep Bottle Green",
+        "canonical": "#0f261f",
+        "tonalRamp": [
+          "#060f0c",
+          "#091713",
+          "#0c1e19",
+          "#0f261f",
+          "#3f514c",
+          "#6f7d79",
+          "#9fa8a5",
+          "#cfd4d2"
+        ]
+      },
+      "ochre": {
+        "role": "secondary",
+        "displayName": "Ochre",
+        "canonical": "#cf9a2c",
+        "tonalRamp": [
+          "#533e12",
+          "#7c5c1a",
+          "#a67b23",
+          "#cf9a2c",
+          "#d9ae56",
+          "#e2c280",
+          "#ecd7ab",
+          "#f5ebd5"
+        ]
+      },
+      "oxblood": {
+        "role": "secondary",
+        "displayName": "Oxblood",
+        "canonical": "#6d1c25",
+        "tonalRamp": [
+          "#2c0b0f",
+          "#411116",
+          "#57161e",
+          "#6d1c25",
+          "#8a4951",
+          "#a7777c",
+          "#c5a4a8",
+          "#e2d2d3"
+        ]
+      },
+      "indigo": {
+        "role": "tertiary",
+        "displayName": "Indigo",
+        "canonical": "#1d2b57",
+        "tonalRamp": [
+          "#0c1123",
+          "#111a34",
+          "#172246",
+          "#1d2b57",
+          "#4a5579",
+          "#77809a",
+          "#a5aabc",
+          "#d2d5dd"
+        ]
+      },
+      "bone": {
+        "role": "neutral",
+        "displayName": "Bone",
+        "canonical": "#ece6d3",
+        "tonalRamp": [
+          "#5e5c54",
+          "#8e8a7f",
+          "#bdb8a9",
+          "#ece6d3",
+          "#f0ebdc",
+          "#f4f0e5",
+          "#f7f5ed",
+          "#fbfaf6"
+        ]
+      },
+      "bone-dim": {
+        "role": "neutral",
+        "displayName": "Bone Dim",
+        "canonical": "#d9d1b8",
+        "tonalRamp": [
+          "#57544a",
+          "#827d6e",
+          "#aea793",
+          "#d9d1b8",
+          "#e1dac6",
+          "#e8e3d4",
+          "#f0ede3",
+          "#f7f6f1"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#10201a",
+        "tonalRamp": [
+          "#060d0a",
+          "#0a1310",
+          "#0d1a15",
+          "#10201a",
+          "#404d48",
+          "#707976",
+          "#9fa6a3",
+          "#cfd2d1"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headline only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Row names, contact details, success heading."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Paragraphs, 68ch measure at most."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase table heads, tags, stat strip, footer headings."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "All button and entrance transitions (250ms on buttons)."
+      },
+      {
+        "name": "reveal-up",
+        "value": "opacity 0 to 1, translateY 28px to 0, scroll-driven over entry 0-40%",
+        "purpose": "Quiet section entrance; disabled under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botol Button",
+      "kind": "button",
+      "refersTo": "button-botol",
+      "description": "Primary action on bone panels.",
+      "html": "<button class=\"ds-btn-botol\">Lihat Karya Kami</button>",
+      "css": ".ds-btn-botol{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:.85rem 1.5rem;font-family:'Hanken Grotesk Variable',system-ui,sans-serif;font-weight:600;font-size:.9375rem;letter-spacing:.01em;line-height:1.1;border:2px solid transparent;border-radius:0;cursor:pointer;transition:background-color .25s cubic-bezier(.16,1,.3,1),color .25s cubic-bezier(.16,1,.3,1),border-color .25s cubic-bezier(.16,1,.3,1);background:#17362c;color:#ece6d3;}.ds-btn-botol:hover{background:#10201a;}.ds-btn-botol:active{transform:translateY(1px);}.ds-btn-botol:focus-visible{outline:2px solid #cf9a2c;outline-offset:3px;}"
+    },
+    {
+      "name": "Ochre Button",
+      "kind": "button",
+      "refersTo": "button-ochre",
+      "description": "CTA on green grounds, as in the nav.",
+      "html": "<button class=\"ds-btn-ochre\">Mulai Konsultasi</button>",
+      "css": ".ds-btn-ochre{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:.85rem 1.5rem;font-family:'Hanken Grotesk Variable',system-ui,sans-serif;font-weight:600;font-size:.9375rem;letter-spacing:.01em;line-height:1.1;border:2px solid transparent;border-radius:0;cursor:pointer;transition:background-color .25s cubic-bezier(.16,1,.3,1),color .25s cubic-bezier(.16,1,.3,1),border-color .25s cubic-bezier(.16,1,.3,1);background:#cf9a2c;color:#10201a;}.ds-btn-ochre:hover{background:#ece6d3;}.ds-btn-ochre:active{transform:translateY(1px);}.ds-btn-ochre:focus-visible{outline:2px solid #cf9a2c;outline-offset:3px;}"
+    },
+    {
+      "name": "Line Button",
+      "kind": "button",
+      "refersTo": "button-line",
+      "description": "Secondary outlined action on bone.",
+      "html": "<button class=\"ds-btn-line\">Mulai Proyek</button>",
+      "css": ".ds-btn-line{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:.85rem 1.5rem;font-family:'Hanken Grotesk Variable',system-ui,sans-serif;font-weight:600;font-size:.9375rem;letter-spacing:.01em;line-height:1.1;border:2px solid transparent;border-radius:0;cursor:pointer;transition:background-color .25s cubic-bezier(.16,1,.3,1),color .25s cubic-bezier(.16,1,.3,1),border-color .25s cubic-bezier(.16,1,.3,1);border-color:currentColor;background:transparent;color:#10201a;}.ds-btn-line:hover{background:#10201a;color:#ece6d3;border-color:#10201a;}.ds-btn-line:focus-visible{outline:2px solid #cf9a2c;outline-offset:3px;}"
+    },
+    {
+      "name": "Floating-Label Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Underlined field on the bone form panel.",
+      "html": "<div class=\"ds-field\"><input id=\"ds-n\" placeholder=\" \"><label for=\"ds-n\">Nama Lengkap *</label></div>",
+      "css": ".ds-field{position:relative;background:#ece6d3;padding:8px 0;width:280px;}.ds-field input{width:100%;min-height:56px;box-sizing:border-box;border:0;border-bottom:2px solid rgba(16,32,26,.35);border-radius:0;background:transparent;color:#10201a;padding:24px 0 8px;font:inherit;outline:none;transition:border-color .25s;}.ds-field input:focus{border-bottom-color:#6d1c25;}.ds-field label{position:absolute;left:0;top:24px;transform-origin:left;color:rgba(16,32,26,.65);pointer-events:none;transition:all .3s;}.ds-field input:focus+label,.ds-field input:not(:placeholder-shown)+label{top:8px;transform:scale(.75);}.ds-field input:focus+label{color:#6d1c25;}"
+    },
+    {
+      "name": "Navbar",
+      "kind": "nav",
+      "refersTo": "nav-bar",
+      "description": "Fixed 64px bar, 3px ink lower edge, kunci tile logo.",
+      "html": "<header class=\"ds-nav\"><span class=\"ds-nav-logo\"></span><span class=\"ds-nav-name\">Studio Nuansa</span><a class=\"ds-nav-link\" href=\"#\">Karya</a><a class=\"ds-nav-link\" href=\"#\">Proses</a></header>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:24px;height:64px;padding:0 20px;background:#0f261f;border-bottom:3px solid #10201a;color:#ece6d3;font-family:'Hanken Grotesk Variable',system-ui,sans-serif;}.ds-nav-logo{width:32px;height:32px;border:1px solid #10201a;background:#17362c;}.ds-nav-name{font-family:'Young Serif',Georgia,serif;font-size:1.25rem;margin-right:auto;}.ds-nav-link{color:#ece6d3;font-size:.875rem;font-weight:500;letter-spacing:.025em;text-decoration:none;transition:color .25s;}.ds-nav-link:hover{color:#cf9a2c;}.ds-nav-link:focus-visible{outline:2px solid #cf9a2c;outline-offset:3px;}"
+    },
+    {
+      "name": "Grout Tile Grid",
+      "kind": "card",
+      "refersTo": "reading-panel",
+      "description": "Signature layout: ink container, 3px gap, bone reading panel beside tile cells.",
+      "html": "<div class=\"ds-grout\"><div class=\"ds-panel\"><h3>Ruang Adalah Cerminan Diri.</h3><p>Panel baca di atas bone.</p></div><div class=\"ds-tile ds-tile-a\"></div><div class=\"ds-tile ds-tile-b\"></div></div>",
+      "css": ".ds-grout{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:96px 96px;gap:3px;background:#10201a;width:420px;}.ds-panel{grid-row:span 2;background:#ece6d3;color:#10201a;padding:20px;}.ds-panel h3{font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:1.75rem;line-height:1.08;letter-spacing:-.015em;margin:0 0 8px;}.ds-panel p{margin:0;font-family:'Hanken Grotesk Variable',system-ui,sans-serif;line-height:1.6;}.ds-tile-a{background:#6d1c25;}.ds-tile-b{background:#17362c;}"
+    },
+    {
+      "name": "Pricing Row",
+      "kind": "custom",
+      "refersTo": "reading-panel",
+      "description": "Bone table row with a 40px tegel marker, serif name and tabular figures.",
+      "html": "<div class=\"ds-row\"><span class=\"ds-row-tile\"></span><span class=\"ds-row-name\">Full Interior (Hunian)</span><span class=\"ds-row-val\">Rp 1.5jt - 3jt / m²</span></div>",
+      "css": ".ds-row{display:flex;align-items:center;gap:16px;padding:20px 8px;background:#ece6d3;color:#10201a;border-bottom:1px solid rgba(16,32,26,.25);transition:background-color .25s;}.ds-row:hover{background:rgba(217,209,184,.6);}.ds-row-tile{width:40px;height:40px;border:1px solid #10201a;background:#17362c;flex:none;}.ds-row-name{font-family:'Young Serif',Georgia,serif;font-size:1.25rem;margin-right:auto;}.ds-row-val{font-family:'Hanken Grotesk Variable',system-ui,sans-serif;font-weight:600;font-variant-numeric:tabular-nums;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Ubin Tegel",
+    "overview": "The page is the floor of an old Indonesian house, and each section is a room laid in its own cement tile. Surfaces are matte and square, set edge to edge with a thick ink joint between them. Bottle green is the ground, bone is where reading happens, and ochre, oxblood and indigo appear as tile colour. Chunky soft serif lettering sits against a quiet grotesk for text.\n\nDensity is moderate and structural rather than airy: the first viewport is a grid of tiles (a large bone reading panel, one photograph tile, one pattern tile, a stat strip at the base) and later sections reuse the same module of panels separated by grout. Ornament is authored geometry (four mirror-symmetric tegel motifs) and lives on grounds, dividers, swatch chips and the process floor, not behind body text.\n\nThe build departs from the cream-ground, serif-plus-one-terracotta-accent, equal-card-row pattern. It has no rounded corners and no shadows.",
+    "keyCharacteristics": [
+      "Bottle-green ground (botol-deep) with bone reading panels.",
+      "Every corner is square; depth comes from 3px ink grout, not shadow.",
+      "Four tegel motifs (kunci, kotak, bintang, daun) generated as SVG data-URIs from one source.",
+      "Display serif for lettering, grotesk for text and uppercase labels.",
+      "Photographs sit square-cornered in the tile grid on their average-colour ground."
+    ],
+    "rules": [
+      {
+        "name": "The Grout Rule",
+        "body": "Ink is the joint colour. Containers take the ink background and their children sit in a 3px gap, so the seams between tiles are drawn by the container, never by individual borders.",
+        "section": "colors"
+      },
+      {
+        "name": "The Reading Panel Rule",
+        "body": "Long text sits on bone in ink, or on green in bone (80% or more opacity). Tegel patterns never sit behind body text.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Serif Rule",
+        "body": "Lettering is Young Serif at regular weight; emphasis comes from size and colour, never faux bold or italic.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Floor Rule",
+        "body": "A floor has no shadows. Hierarchy comes from panel colour and grout, never blur or lift.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep every corner square (0px) and let a container's ink background plus a 3px gap draw the joints.",
+      "Do put reading text on bone in ink, or on green in bone at 80% or more opacity.",
+      "Do draw tegel motifs from `src/lib/tegel.ts`; add new motifs only as mirror-symmetric shapes in the existing palettes.",
+      "Do place photographs as square tiles over their average colour, with an ink joint, and keep alt text from the image slot data.",
+      "Do keep the ochre focus ring (2px, 3px offset) and honour reduced motion for every animated entrance."
+    ],
+    "donts": [
+      "Don't use shadows, blur or rounded corners to create depth; the floor is flat.",
+      "Don't put a tegel pattern behind body text.",
+      "Don't use indigo for text or surfaces; it is tile colour.",
+      "Don't set display type in anything but Young Serif at regular weight.",
+      "Don't introduce a second accent beside ochre for actions or return to a cream ground."
+    ]
+  }
+}

@@ -1,95 +1,85 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import Photo from './ui/Photo';
+import Tegel from './ui/Tegel';
+import { SITE } from '../data/site';
 
-const editorialReveal = {
-  hidden: { opacity: 0 },
-  visible: { 
-    opacity: 1,
-    transition: { staggerChildren: 0.12 }
-  }
-};
-
-const wordReveal = {
-  hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    filter: "blur(0px)",
-    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] }
-  }
-};
-
-const slowDrift = {
-  scale: [1, 1.05],
-  transition: { duration: 30, repeat: Infinity, repeatType: "reverse" as const }
-};
+const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function Hero() {
-  const headline = "Ruang Adalah Cerminan Diri. Mari Buat Yang Layak.".split(" ");
+  const reduce = useReducedMotion();
+  const words = 'Ruang Adalah Cerminan Diri. Mari Buat Yang Layak.'.split(' ');
+
+  const container = { hidden: {}, visible: { transition: { staggerChildren: reduce ? 0 : 0.12 } } };
+  const word = {
+    hidden: reduce ? { opacity: 1 } : { opacity: 0, y: 30, filter: 'blur(10px)' },
+    visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: reduce ? 0 : 1, ease } },
+  };
+  const rise = (delay: number) => ({
+    initial: reduce ? false : { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 1, delay, ease },
+  });
 
   return (
-    <section className="relative w-full h-[90vh] min-h-[600px] flex items-center justify-center overflow-hidden bg-primary text-surface mt-[-72px]">
-      {/* Background Image with Ken Burns effect */}
-      <motion.div 
-        className="absolute inset-0 z-0"
-        animate={slowDrift}
-      >
-        <div className="absolute inset-0 bg-primary/50 z-10" /> {/* Overlay for text readability */}
-        <img 
-          src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1920" 
-          alt="Living room hangat minimalist" 
-          className="w-full h-full object-cover"
-        />
-      </motion.div>
+    <section aria-labelledby="hero-title" className="bg-ink">
+      <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-[3px] md:min-h-[calc(100svh-64px)] md:grid-cols-12 md:grid-rows-[1fr_auto]">
+        {/* Sisi kanan: lantai ubin. Satu foto ruangan, satu ubin pola, satu foto lagi. */}
+        <div className="order-2 grid gap-[3px] bg-ink md:order-none md:col-span-4 md:col-start-9 md:row-span-2 md:row-start-1 md:grid-rows-[1fr_auto]">
+          <div className="relative aspect-[16/9] overflow-hidden md:aspect-auto">
+            <motion.div
+              className="absolute inset-0"
+              animate={reduce ? undefined : { scale: [1, 1.05] }}
+              transition={{ duration: 30, repeat: Infinity, repeatType: 'reverse', ease: 'linear' }}
+            >
+              <Photo slot="hero" eager sizes="(min-width: 768px) 34vw, 100vw" />
+            </motion.div>
+          </div>
+          <div className="grid grid-cols-2 gap-[3px]">
+            <Tegel pattern="kunci" palette="oxblood" size={96} className="aspect-square" />
+            <div className="aspect-square overflow-hidden">
+              <Photo slot="hero-alt" eager sizes="(min-width: 768px) 17vw, 50vw" />
+            </div>
+          </div>
+        </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center text-center pt-16">
-        <motion.h1 
-          className="text-5xl md:text-7xl lg:text-8xl font-serif leading-tight mb-8 max-w-4xl"
-          variants={editorialReveal}
-          initial="hidden"
-          animate="visible"
-        >
-          {headline.map((word, index) => (
-            <motion.span key={index} className="inline-block mr-[0.25em]" variants={wordReveal}>
-              {word}
-            </motion.span>
-          ))}
-        </motion.h1>
+        {/* Panel baca */}
+        <div className="order-1 flex flex-col justify-between gap-10 bg-bone px-6 py-10 md:order-none md:gap-12 text-ink md:col-span-8 md:col-start-1 md:row-start-1 md:px-12 md:py-16 lg:px-16">
+          <motion.h1
+            id="hero-title"
+            className="max-w-[16ch] text-[clamp(2.75rem,7.2vw,6rem)] leading-[1.02] tracking-[-0.03em]"
+            variants={container}
+            initial="hidden"
+            animate="visible"
+          >
+            {words.map((w, i) => (
+              <motion.span key={i} className="mr-[0.22em] inline-block" variants={word}>{w}</motion.span>
+            ))}
+          </motion.h1>
 
-        <motion.p 
-          className="text-lg md:text-xl font-sans text-surface/80 max-w-2xl mb-10 leading-relaxed font-light"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Studio desain interior berbasis di Jakarta. Kami merancang ruang yang tidak hanya indah, tapi terasa seperti rumah — untuk hunian, F&B, dan ruang kerja.
-        </motion.p>
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <motion.p {...rise(1)} className="max-w-[46ch] text-lg leading-relaxed text-ink/80 md:text-xl">
+              Studio desain interior berbasis di Jakarta. Kami merancang ruang yang tidak hanya indah, tapi terasa seperti rumah — untuk hunian, F&amp;B, dan ruang kerja.
+            </motion.p>
+            <motion.div {...rise(1.2)} className="flex shrink-0 flex-col gap-3 sm:flex-row">
+              <a href="#projects" className="btn btn-botol">Lihat Karya Kami</a>
+              <a href="#contact" className="btn btn-line">Mulai Proyek</a>
+            </motion.div>
+          </div>
+        </div>
 
-        <motion.div 
-          className="flex flex-col sm:flex-row gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        {/* Grout strip: pernyataan studio */}
+        <motion.div
+          initial={reduce ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.5 }}
+          className="order-3 bg-botol-deep px-6 py-4 md:order-none md:col-span-8 md:col-start-1 md:row-start-2 md:px-12 lg:px-16"
         >
-          <a href="#projects" className="px-8 py-4 bg-accent text-surface text-sm font-medium hover:bg-accent/90 transition-colors">
-            Lihat Karya Kami
-          </a>
-          <a href="#contact" className="px-8 py-4 bg-transparent border border-surface/30 text-surface text-sm font-medium hover:bg-surface/10 transition-colors">
-            Mulai Proyek
-          </a>
+          <p className="label-caps text-bone/80">
+            Berdiri sejak {SITE.founded} <span aria-hidden="true" className="mx-2 text-ochre">&bull;</span> 80+ Proyek Selesai{' '}
+            <span aria-hidden="true" className="mx-2 text-ochre">&bull;</span> Featured in {SITE.press.slice(0, 2).join(', ')}
+          </p>
         </motion.div>
       </div>
-
-      {/* Statement bar */}
-      <motion.div 
-        className="absolute bottom-0 left-0 right-0 border-t border-surface/20 bg-primary/20 backdrop-blur-sm py-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.5 }}
-      >
-        <div className="max-w-7xl mx-auto px-6 flex justify-center text-xs md:text-sm text-surface/70 tracking-widest uppercase font-medium">
-          Berdiri sejak 2019 &nbsp;&bull;&nbsp; 80+ Proyek Selesai &nbsp;&bull;&nbsp; Featured in Casa Indonesia, Dezeen
-        </div>
-      </motion.div>
     </section>
   );
 }

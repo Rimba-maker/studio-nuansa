@@ -1,0 +1,22 @@
+---
+import Photo from './ui/Photo.astro';
+import type { SlotId } from '../data/image-slots';
+
+const items: { slot: SlotId; name: string }[] = [
+  { slot: 'detail-teak', name: 'Jati' },
+  { slot: 'detail-rattan', name: 'Rotan' },
+  { slot: 'detail-linen', name: 'Linen' },
+  { slot: 'detail-ceramic', name: 'Keramik' },
+  { slot: 'detail-plaster', name: 'Plester' },
+];
+---
+<section aria-label="Bahan yang sering kami pakai" class="bg-ink py-[3px]">
+  <ul class="mx-auto grid max-w-[1600px] grid-cols-2 gap-[3px] md:grid-cols-5">
+    {items.map((it, i) => (
+      <li class:list={['group relative aspect-[3/4] overflow-hidden md:aspect-[4/5]', i === items.length - 1 && 'col-span-2 aspect-[16/9] md:col-span-1 md:aspect-[4/5]']}>
+        <Photo slot={it.slot} sizes="(min-width: 768px) 20vw, 50vw" class="transition-transform duration-700 ease-out group-hover:scale-105" />
+        <span class="label-caps absolute bottom-0 left-0 bg-bone px-3 py-2 text-ink">{it.name}</span>
+      </li>
+    ))}
+  </ul>
+</section>

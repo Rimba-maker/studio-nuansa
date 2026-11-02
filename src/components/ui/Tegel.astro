@@ -1,0 +1,6 @@
+---
+import { tegelCss, type TegelPaletteName, type TegelPattern } from '../../lib/tegel';
+interface Props { pattern: TegelPattern; palette: TegelPaletteName; size?: number; class?: string; }
+const { pattern, palette, size = 96, class: className = '' } = Astro.props;
+---
+<div class={className} style={tegelCss(pattern, palette, size)} aria-hidden="true"></div>

@@ -1,33 +1,39 @@
 ---
+import Tegel from './ui/Tegel.astro';
+import { SITE } from '../data/site';
 ---
-<footer class="bg-primary text-surface py-24">
-  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
-    <div class="md:col-span-2">
-      <h2 class="text-3xl font-serif mb-4">Studio Nuansa</h2>
-      <p class="text-surface/70 font-serif italic text-xl md:text-2xl">"Designed with intention, lived with joy."</p>
+<footer class="bg-ink text-bone">
+  <Tegel pattern="kunci" palette="botol" size={96} class="h-24 border-y-[3px] border-ink" />
+  <div class="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 md:grid-cols-12 md:px-8">
+    <div class="md:col-span-6">
+      <p class="font-display text-4xl md:text-5xl">{SITE.name}</p>
+      <p class="mt-5 max-w-[26ch] font-display text-2xl text-bone/80 md:text-3xl">{SITE.tagline}</p>
+      <p class="mt-4 text-bone/60 italic">{SITE.footerLine}</p>
     </div>
-    
-    <div>
-      <h3 class="text-xs font-sans font-semibold uppercase tracking-widest mb-6 text-surface/50">Office</h3>
-      <address class="not-italic text-sm text-surface/80 leading-relaxed">
-        Jl. Senopati No. 42<br />
-        Jakarta Selatan, 12190<br />
-        Indonesia<br /><br />
-        Mon - Fri, 09:00 - 18:00
+
+    <div class="md:col-span-3">
+      <h2 class="label-caps mb-5 font-sans text-bone/55">Office</h2>
+      <address class="leading-relaxed text-bone/85">
+        {SITE.address.map((l) => (<span class="block">{l}</span>))}
+        <span class="mt-4 block">{SITE.hours}</span>
       </address>
     </div>
 
-    <div>
-      <h3 class="text-xs font-sans font-semibold uppercase tracking-widest mb-6 text-surface/50">Connect</h3>
-      <ul class="space-y-3 text-sm text-surface/80">
-        <li><a href="#" class="hover:text-accent transition-colors">Instagram</a></li>
-        <li><a href="#" class="hover:text-accent transition-colors">Pinterest</a></li>
-        <li><a href="#" class="hover:text-accent transition-colors">Behance</a></li>
+    <div class="md:col-span-3">
+      <h2 class="label-caps mb-5 font-sans text-bone/55">Connect</h2>
+      <ul class="space-y-2 text-bone/85">
+        <li>Instagram <span class="text-bone/55">{SITE.instagram}</span></li>
+        <li>Pinterest <span class="text-bone/55">moodboards</span></li>
+        <li>Behance <span class="text-bone/55">project portfolio</span></li>
       </ul>
     </div>
   </div>
-  <div class="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-surface/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs text-surface/50">
-    <p>&copy; {new Date().getFullYear()} Studio Nuansa. All rights reserved.</p>
-    <p>Featured in Casa Indonesia, Dezeen, ArchDaily</p>
+
+  <div class="mx-auto max-w-[1400px] px-5 md:px-8">
+    <div class="flex flex-col gap-3 border-t border-bone/15 py-8 text-sm text-bone/60 md:flex-row md:justify-between">
+      <p>&copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.</p>
+      <p>Featured in {SITE.press.join(', ')}</p>
+      <p>Foto: Pexels</p>
+    </div>
   </div>
 </footer>
