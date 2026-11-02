@@ -1,0 +1,17 @@
+---
+import { photo } from '../../lib/photo';
+import type { SlotId } from '../../data/image-slots';
+interface Props { slot: SlotId; class?: string; sizes?: string; eager?: boolean; }
+const { slot, class: className = '', sizes = '(min-width: 1024px) 50vw, 100vw', eager = false } = Astro.props;
+const p = photo(slot);
+---
+<img
+  src={p.src}
+  srcset={p.srcSet}
+  sizes={p.srcSet ? sizes : undefined}
+  alt={p.alt}
+  loading={eager ? 'eager' : 'lazy'}
+  decoding="async"
+  class:list={['block h-full w-full object-cover', className]}
+  style={`background-color:${p.color}`}
+/>
