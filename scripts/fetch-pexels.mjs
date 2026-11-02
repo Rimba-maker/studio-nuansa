@@ -14,8 +14,8 @@
  *
  *   pnpm images --picks
  *
- * In a Claude cloud session Node ignores the egress proxy by default; prefix the command with
- * NODE_USE_ENV_PROXY=1 NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt. On your own machine it is not needed.
+ * Behind an HTTP(S) proxy, Node needs NODE_USE_ENV_PROXY=1 (and NODE_EXTRA_CA_CERTS for a custom CA).
+ * On a normal connection nothing extra is needed.
  *
  * Picks mode only downloads from images.pexels.com by photo id; it needs no key. Optional per-slot object
  * form: { "id": 1571460, "photographer": "Name", "photographerUrl": "https://www.pexels.com/@name" }.
