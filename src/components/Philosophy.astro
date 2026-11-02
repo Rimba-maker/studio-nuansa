@@ -1,38 +1,48 @@
 ---
+import Photo from './ui/Photo.astro';
+import Tegel from './ui/Tegel.astro';
 ---
-<section id="studio" class="py-24 md:py-32 bg-canvas">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="mb-16 md:mb-24 max-w-3xl">
-      <h2 class="text-4xl md:text-5xl font-serif mb-6 text-primary">Tiga Prinsip Yang Memandu Kami</h2>
+<section id="studio" aria-labelledby="philosophy-title" class="bg-botol pt-24 md:pt-36">
+  <div class="mx-auto max-w-[1400px] px-5 md:px-8">
+    <div class="mb-12 grid items-end gap-8 md:mb-20 md:grid-cols-12">
+      <h2 id="philosophy-title" class="reveal text-[clamp(2.25rem,5vw,4.25rem)] md:col-span-8">Tiga Prinsip Yang Memandu Kami</h2>
+      <Tegel pattern="daun" palette="deep" size={72} class="hidden h-16 md:col-span-4 md:block" />
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 border-t border-secondary/50 pt-16">
-      <!-- 01 -->
-      <div>
-        <span class="text-xs font-semibold tracking-widest text-accent mb-6 block uppercase">01 &mdash; Filosofi</span>
-        <h3 class="text-2xl font-serif mb-4 text-primary">Form Mengikuti Cerita</h3>
-        <p class="text-primary/70 leading-relaxed font-sans text-sm md:text-base">
+    <div class="grout grid grid-cols-1 md:grid-cols-12">
+      <!-- Form Mengikuti Cerita -->
+      <article class="reveal flex flex-col justify-end bg-bone p-8 text-ink md:col-span-5 md:row-span-1 md:p-12">
+        <h3 class="mb-5 text-3xl md:text-4xl">Form Mengikuti Cerita</h3>
+        <p class="measure text-base leading-relaxed text-ink/80 md:text-lg">
           Setiap proyek dimulai dengan mendengarkan. Bagaimana Anda hidup, ritual pagi seperti apa, kebiasaan kecil yang mendefinisikan rumah. Desain yang baik adalah yang melayani kehidupan, bukan sebaliknya.
         </p>
+      </article>
+      <div class="aspect-[4/3] overflow-hidden md:col-span-7 md:aspect-auto md:min-h-[420px]">
+        <Photo slot="philosophy-story" sizes="(min-width: 768px) 58vw, 100vw" />
       </div>
 
-      <!-- 02 -->
-      <div>
-        <span class="text-xs font-semibold tracking-widest text-accent mb-6 block uppercase">02 &mdash; Materialitas</span>
-        <h3 class="text-2xl font-serif mb-4 text-primary">Material Berbicara Jujur</h3>
-        <p class="text-primary/70 leading-relaxed font-sans text-sm md:text-base">
+      <!-- Material Berbicara Jujur -->
+      <div class="aspect-[4/3] overflow-hidden md:col-span-4 md:aspect-auto md:min-h-[380px]">
+        <Photo slot="philosophy-material" sizes="(min-width: 768px) 33vw, 100vw" />
+      </div>
+      <article class="reveal flex flex-col justify-end bg-oxblood p-8 text-bone md:col-span-8 md:p-12">
+        <h3 class="mb-5 text-3xl md:text-4xl">Material Berbicara Jujur</h3>
+        <p class="measure text-base leading-relaxed text-bone/85 md:text-lg">
           Kayu yang menunjukkan urat aslinya, batu yang tidak menyamarkan tekstur, kain yang aging dengan elegan. Kami percaya material harus jujur — dan rumah yang dibangun dengan material jujur akan menua dengan baik.
         </p>
-      </div>
+      </article>
 
-      <!-- 03 -->
-      <div>
-        <span class="text-xs font-semibold tracking-widest text-accent mb-6 block uppercase">03 &mdash; Komposisi</span>
-        <h3 class="text-2xl font-serif mb-4 text-primary">Ruang Bernafas</h3>
-        <p class="text-primary/70 leading-relaxed font-sans text-sm md:text-base">
+      <!-- Ruang Bernafas: panel yang sengaja nyaris kosong -->
+      <article class="reveal relative flex min-h-[320px] flex-col justify-between bg-bone p-8 text-ink md:col-span-7 md:min-h-[460px] md:p-12">
+        <h3 class="text-3xl md:text-4xl">Ruang Bernafas</h3>
+        <p class="max-w-[38ch] self-end text-base leading-relaxed text-ink/75">
           Desain yang baik memberi ruang untuk diam. Tidak setiap sudut perlu dihias, tidak setiap dinding perlu lukisan. Negative space adalah bagian dari komposisi.
         </p>
+      </article>
+      <div class="aspect-[4/3] overflow-hidden md:col-span-5 md:aspect-auto">
+        <Photo slot="philosophy-space" sizes="(min-width: 768px) 42vw, 100vw" />
       </div>
     </div>
   </div>
+  <Tegel pattern="daun" palette="botol" size={72} class="mt-24 h-[72px] border-y-[3px] border-ink md:mt-36" />
 </section>
