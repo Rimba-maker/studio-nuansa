@@ -1,27 +1,101 @@
 @import "tailwindcss";
 
 @theme {
-  --color-canvas: #faf9f5;
-  --color-surface: #ffffff;
-  --color-primary: #181715;
-  --color-accent: #cc785c;
-  --color-secondary: #e2ded4;
+  --color-botol: #17362c;
+  --color-botol-deep: #0f261f;
+  --color-bone: #ece6d3;
+  --color-bone-dim: #d9d1b8;
+  --color-ochre: #cf9a2c;
+  --color-oxblood: #6d1c25;
+  --color-indigo: #1d2b57;
+  --color-ink: #10201a;
 
-  --font-serif: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: "Young Serif", Georgia, "Times New Roman", serif;
+  --font-sans: "Hanken Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; color-scheme: dark; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
   body {
-    background-color: var(--color-canvas);
-    color: var(--color-primary);
+    background-color: var(--color-botol-deep);
+    color: var(--color-bone);
     font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    caret-color: var(--color-ochre);
+    scrollbar-color: var(--color-ochre) var(--color-botol-deep);
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-serif);
-    font-weight: 500;
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.08;
+    text-wrap: balance;
   }
+  p { text-wrap: pretty; }
+
+  ::selection { background: var(--color-ochre); color: var(--color-ink); }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ochre);
+    outline-offset: 3px;
+  }
+
+  ::placeholder { color: color-mix(in oklab, currentColor 55%, transparent); }
+  input, select, textarea { font: inherit; color: inherit; border-radius: 0; }
+  select option { background: var(--color-bone); color: var(--color-ink); }
+  a, button { -webkit-tap-highlight-color: transparent; }
+  address { font-style: normal; }
+}
+
+@layer components {
+  /* Grout: the 3px joint between tiles. Containers set the grout colour, tiles sit in a gap. */
+  .grout { background-color: var(--color-ink); gap: 3px; }
+  .on-bone { color: var(--color-ink); }
+  .measure { max-width: 68ch; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+    min-height: 48px; padding: .85rem 1.5rem;
+    font-weight: 600; font-size: 1rem; letter-spacing: .01em; line-height: 1.1;
+    border: 2px solid transparent;
+    transition: background-color .25s var(--ease-out-expo), color .25s var(--ease-out-expo), border-color .25s var(--ease-out-expo), transform .25s var(--ease-out-expo);
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-ochre { background: var(--color-ochre); color: var(--color-ink); }
+  .btn-ochre:hover { background: var(--color-bone); }
+  .btn-botol { background: var(--color-botol); color: var(--color-bone); }
+  .btn-botol:hover { background: var(--color-ink); }
+  .btn-line { border-color: currentColor; color: inherit; }
+  .btn-line:hover { background: var(--color-ink); color: var(--color-bone); border-color: var(--color-ink); }
+
+  .label-caps {
+    font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; line-height: 1.3;
+  }
+}
+
+/* Content is visible by default; browsers with scroll-driven animations get a quiet entrance. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
