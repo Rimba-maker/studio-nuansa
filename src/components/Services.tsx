@@ -1,94 +1,78 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Compass, MonitorSmartphone, Ruler } from 'lucide-react';
+import Photo from './ui/Photo';
+import Tegel from './ui/Tegel';
+import type { SlotId } from '../data/image-slots';
 
-const services = [
+const ease = [0.16, 1, 0.3, 1] as const;
+
+const services: {
+  title: string; price: string; desc: string; features: string[]; slot: SlotId; Icon: typeof Ruler; tone: string; layout: string;
+}[] = [
   {
-    icon: "📐",
-    title: "Full Interior Design",
-    price: "Mulai dari Rp 1.5 juta / m²",
-    desc: "End-to-end service dari concept sampai handover.",
-    features: [
-      "Konsep & moodboard",
-      "3D rendering & technical drawing",
-      "Material & furniture sourcing",
-      "Project management & site supervision",
-      "Styling & photo handover"
-    ]
+    title: 'Full Interior Design', price: 'Mulai dari Rp 1.5 juta / m²', desc: 'End-to-end service dari concept sampai handover.',
+    features: ['Konsep & moodboard', '3D rendering & technical drawing', 'Material & furniture sourcing', 'Project management & site supervision', 'Styling & photo handover'],
+    slot: 'service-full', Icon: Ruler, tone: 'bg-bone text-ink', layout: 'lg:col-span-7 lg:row-span-2',
   },
   {
-    icon: "💡",
-    title: "Design Consultation",
-    price: "Rp 5 juta - 15 juta / sesi",
-    desc: "Untuk yang sudah punya tim eksekusi, butuh design direction.",
-    features: [
-      "Site visit + briefing",
-      "Concept board & layout",
-      "Material & color guidance",
-      "Sourcing list rekomendasi"
-    ]
+    title: 'Design Consultation', price: 'Rp 5 juta - 15 juta / sesi', desc: 'Untuk yang sudah punya tim eksekusi, butuh design direction.',
+    features: ['Site visit + briefing', 'Concept board & layout', 'Material & color guidance', 'Sourcing list rekomendasi'],
+    slot: 'service-consult', Icon: Compass, tone: 'bg-oxblood text-bone', layout: 'lg:col-span-5',
   },
   {
-    icon: "🖥️",
-    title: "E-Design (Online)",
-    price: "Rp 8 juta - 25 juta / ruangan",
-    desc: "Untuk klien luar kota, scope spesifik (kamar, ruang tamu).",
-    features: [
-      "Konsultasi online 3x",
-      "3D render & sourcing list",
-      "Implementation guide"
-    ]
-  }
+    title: 'E-Design (Online)', price: 'Rp 8 juta - 25 juta / ruangan', desc: 'Untuk klien luar kota, scope spesifik (kamar, ruang tamu).',
+    features: ['Konsultasi online 3x', '3D render & sourcing list', 'Implementation guide'],
+    slot: 'service-edesign', Icon: MonitorSmartphone, tone: 'bg-ochre text-ink', layout: 'lg:col-span-5',
+  },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.15 } }
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
-};
-
 export default function Services() {
+  const reduce = useReducedMotion();
   return (
-    <section id="services" className="py-24 md:py-32 bg-canvas">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-16 md:mb-24 flex flex-col md:items-center text-center">
-          <h2 className="text-4xl md:text-5xl font-serif mb-6 text-primary">What We Do</h2>
-          <div className="w-12 h-px bg-accent mx-auto"></div>
-        </div>
+    <section id="services" aria-labelledby="services-title" className="bg-botol pb-24 md:pb-36">
+      <Tegel pattern="kotak" palette="deep" size={72} className="mb-24 h-[72px] border-b-[3px] border-ink md:mb-36" />
+      <div className="mx-auto max-w-[1400px] px-5 md:px-8">
+        <h2 id="services-title" className="mb-12 text-[clamp(2.25rem,5vw,4.25rem)] md:mb-20">What We Do</h2>
 
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {services.map((service, index) => (
-            <motion.div 
-              key={index}
-              variants={cardVariants}
-              className="group bg-surface p-10 border border-secondary hover:border-accent transition-colors duration-500"
+        <div className="grout grid grid-cols-1 lg:grid-cols-12">
+          {services.map((s, i) => (
+            <motion.article
+              key={s.title}
+              initial={reduce ? false : { opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={reduce ? undefined : { y: -4 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.8, ease, delay: i * 0.12 }}
+              className={`relative flex flex-col ${s.tone} ${s.layout}`}
             >
-              <div className="text-4xl mb-6 opacity-80">{service.icon}</div>
-              <h3 className="text-2xl font-serif text-primary mb-2">{service.title}</h3>
-              <p className="text-accent text-sm font-semibold tracking-widest uppercase mb-6">{service.price}</p>
-              <p className="text-primary/70 font-sans text-sm mb-8 line-clamp-2">
-                {service.desc}
-              </p>
-              
-              <ul className="space-y-3 pt-6 border-t border-secondary/50">
-                {service.features.map((feature, i) => (
-                  <li key={i} className="flex items-start text-sm text-primary/80 font-sans">
-                    <span className="text-accent mr-3 mt-0.5">&bull;</span>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+              <div className={`relative overflow-hidden ${i === 0 ? 'aspect-[16/9] lg:aspect-auto lg:min-h-[340px] lg:flex-1' : 'aspect-[16/7]'}`}>
+                <Photo slot={s.slot} sizes="(min-width: 1024px) 55vw, 100vw" />
+              </div>
+              <div className={`flex flex-col p-8 md:p-10 ${i === 0 ? "" : "flex-1"}`}>
+                <s.Icon aria-hidden="true" size={28} strokeWidth={1.5} className="mb-5" />
+                <h3 className="text-3xl md:text-4xl">{s.title}</h3>
+                <motion.p
+                  initial={reduce ? false : { opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 0.3 + i * 0.12 }}
+                  className="mt-3 font-display text-xl tabular-nums"
+                >
+                  {s.price}
+                </motion.p>
+                <p className="mt-4 max-w-[46ch] opacity-85">{s.desc}</p>
+                <ul className={`mt-8 border-t border-current/25 pt-6 text-sm ${i === 0 ? 'lg:columns-2 lg:gap-8' : ''}`}>
+                  {s.features.map((f) => (
+                    <li key={f} className="mb-3 flex break-inside-avoid gap-3">
+                      <span aria-hidden="true" className="mt-[0.6em] h-1.5 w-1.5 shrink-0 bg-current" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.article>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
